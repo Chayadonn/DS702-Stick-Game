@@ -12,14 +12,14 @@ check_sticks = lambda x: True if x in [1, 2] else False # Determine condition as
 left_sticks = lambda x: True if x > 0 else False        # Determine condition as an annoymous function
 
 # Define a warning function returning a message
-def warning_message(index:int)->str:
+def warning_message(index:int):
     match index:
         case 1:
-            return "No, you cannot take more than 2 sticks!"
+            print( "No, you cannot take more than 2 sticks!")
         case 2:
-            return "No, you cannot take less than 1 sticks!"
+            print( "No, you cannot take less than 1 sticks!")
         case 3:
-            return "There are no enough sticks to take."
+            print( "There are no enough sticks to take.")
 
 # Define a function that has two integer parameters and returns an integer
 def sticks_in_pile(sticks: int, comp_play: bool):
@@ -34,11 +34,11 @@ def sticks_in_pile(sticks: int, comp_play: bool):
             print(f"{name}, takes the last stick.")
             return False
     elif taken_sticks > 2:
-        print(warning_message(1)) # Take out more than 2 sticks.
+        warning_message(1) # Take out more than 2 sticks.
     elif taken_sticks < 1:  
-        print(warning_message(2)) # Take out less than 1 stick.
+        warning_message(2) # Take out less than 1 stick.
     else:
-        print(warning_message(3)) # Take more than we have.
+        warning_message(3) # Take more than we have.
 
     # Computer Action
     if left_sticks(sticks) and comp_play:
