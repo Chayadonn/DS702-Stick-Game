@@ -8,12 +8,8 @@
 # Rest of the code goes here...
 import random as rd
 
-check_sticks = (
-    lambda x: True if x in [1, 2] else False
-)  # Determine condition as an annoymous function
-left_sticks = (
-    lambda x: True if x > 0 else False
-)  # Determine condition as an annoymous function
+check_sticks = lambda x: True if x in [1, 2] else False  # Determine condition as an annoymous function
+left_sticks = lambda x: True if x > 0 else False  # Determine condition as an annoymous function
 
 
 # Define a warning function returning a message
@@ -34,9 +30,7 @@ def sticks_in_pile(sticks: int, comp_play: bool):
     if check_sticks(taken_sticks) and taken_sticks <= sticks:
         sticks -= taken_sticks
         comp_play = True  # Computer is allowed to play after the human plays first.
-        if left_sticks(
-            sticks
-        ):  # If there are sticks left do this condition else END the program.
+        if left_sticks(sticks):  # If there are sticks left do this condition else END the program.
             print(f"There are {sticks} sticks in the pile")
         else:
             print(f"{name}, takes the last stick.")
@@ -54,12 +48,8 @@ def sticks_in_pile(sticks: int, comp_play: bool):
         comp_take_sticks = min(tmp, sticks)  # Do not take more than sticks have.
         print(f"\nI, smart computer, takes:{comp_take_sticks}")
         sticks -= comp_take_sticks
-        comp_play = (
-            not comp_play
-        )  # After playing the game, computer has to wait untill human play again.
-        if left_sticks(
-            sticks
-        ):  # If there are sticks left do this condition else END the program.
+        comp_play = not comp_play  # After playing the game, computer has to wait untill human play again.
+        if left_sticks(sticks):  # If there are sticks left do this condition else END the program.
             print(f"There are {sticks} sticks in the pile\n")
         else:
             print("I, smart computer,  takes the last stick.")
