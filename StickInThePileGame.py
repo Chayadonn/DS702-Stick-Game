@@ -8,8 +8,22 @@
 # Rest of the code goes here...
 import random as rd
 
-check_sticks = lambda x: True if x in [1, 2] else False  # Determine condition as an annoymous function
-left_sticks = lambda x: True if x > 0 else False  # Determine condition as an annoymous function
+check_sticks = lambda x: True if x in [1, 2] else False     # Determine condition as an annoymous function
+left_sticks = lambda x: True if x > 0 else False            # Determine condition as an annoymous function
+
+# Define the function check sticks inputed
+def check_input(st:int) -> int:
+    if st > 0:
+        return st
+    else:
+        st = int(float(input("How many sticks (N) in the pile : ")))
+        if st <= 0:
+            print("Please, Input sticks more than 1")
+        return check_input(st)  
+    
+# Define the function computer_action 
+# def computer_action(action:bool, sticks:int)->int:
+
 
 
 # Define a warning function returning a message
@@ -58,7 +72,7 @@ def sticks_in_pile(sticks: int, comp_play: bool):
     return sticks_in_pile(sticks, comp_play)
 
 
-pile = int(input("How many sticks (N) in the pile : "))
+pile = check_input(None)
 print(f"There are {pile} sticks in the pile.")
 name = input("What is your name : ")
 
