@@ -8,10 +8,10 @@
 # Rest of the code goes here...
 import random as rd
 
-max_sticks = 5
+max_sticks = 3
 
 check_sticks = lambda x: True if x in range(max_sticks+1) else False     # Determine condition as an annoymous function
-left_sticks = lambda x: True if x > 0 else False                       # Determine condition as an annoymous function
+left_sticks = lambda x: True if x > 0 else False                         # Determine condition as an annoymous function
 
 
 # Define the function check sticks inputed
@@ -27,17 +27,15 @@ def check_input(st:int) -> int:
 
 # Define the function computer_action 
 def AI(pile_size:int)->int:
-    remainder = min(pile_size % (max_sticks + 2), max_sticks)
+    tmp = pile_size % (max_sticks + 2)
+    remainder = min(tmp, max_sticks)
     if pile_size <= max_sticks:
         remove_pile = max(pile_size - 1, 1)
     else:
         if remainder == 0:
-            # Remove any number of stones to keep the pile size a multiple of 4
             remove_pile = rd.randint(1, max_sticks)
         else:
-            # Remove stones to make the pile size a multiple of 4
             remove_pile = remainder
-
     return remove_pile
 
 
@@ -48,12 +46,16 @@ def warning_message(index: int):
         case 2: print("No, you cannot take less than 1 sticks!")
         case 3: print("There are no enough sticks to take.")
 
+# def human_action(h_action:bool,):
+
+# def computer_action(c_action:bool,):
+
+
 
 # Define a function that has two integer parameters and returns an integer
-def sticks_in_pile(sticks: int, comp_play: bool):
+def sticks_in_pile_game(sticks: int, comp_play: bool):
     # Human Action
-    taken_sticks = int(input(f"{name}, how many sticks you will take (1 or 2):"))
-
+    taken_sticks = int(input(f"{name}, how many sticks you will take (max {max_sticks}):"))
     if check_sticks(taken_sticks) and taken_sticks <= sticks:
         sticks -= taken_sticks
         comp_play = True         # Computer is allowed to play after the human plays first.
@@ -62,12 +64,12 @@ def sticks_in_pile(sticks: int, comp_play: bool):
         else:
             print(f"{name}, takes the last stick.")
             return False
-    # elif taken_sticks > max_sticks:
-    #     warning_message(1)  # Take out more than 2 sticks.
-    # elif taken_sticks < 1:
-    #     warning_message(2)  # Take out less than 1 stick.
-    # else:
-    #     warning_message(3)  # Take more than we have.
+    elif taken_sticks > max_sticks:
+        warning_message(1)  # Take out more than 2 sticks.
+    elif taken_sticks < 1:
+        warning_message(2)  # Take out less than 1 stick.
+    else:
+        warning_message(3)  # Take more than we have.
 
     # Computer Action
     if left_sticks(sticks) and comp_play:
@@ -82,18 +84,16 @@ def sticks_in_pile(sticks: int, comp_play: bool):
             print("I, smart computer,  takes the last stick.")
             return True
 
-    return sticks_in_pile(sticks, comp_play)
+    return sticks_in_pile_game(sticks, comp_play)
 
 
 if __name__ == "__main__":
-    pile = check_input(20)  # At first, there is 0 stick in pile
+    pile = check_input(19)                  # At first, there is 0 stick in pile
     print(f"There are {pile} sticks in the pile.")
     # name = input("What is your name : ")
     name = "Xia O"
-    winner = sticks_in_pile(pile, False)  # Who's gonna win this game??
-
-    # Announce the winner
-    if winner:
+    winner = sticks_in_pile_game(pile, False)    # Who's gonna win this game??
+    if winner:                              # Announce the winner
         print(f"\n{name} win  ( I, smart computer,  am sad T_T)")
     else:
         print("\nI, smart computer, win  !!!!")
