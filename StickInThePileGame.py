@@ -8,21 +8,6 @@
 # Rest of the code goes here...
 from random import choice, randint
 
-<<<<<<< Updated upstream
-check_sticks = lambda x: True if x in [1, 2] else False  # Determine condition as an annoymous function
-left_sticks = lambda x: True if x > 0 else False  # Determine condition as an annoymous function
-
-
-# Define a warning function returning a message
-def warning_message(index: int):
-    match index:
-        case 1:
-            print("No, you cannot take more than 2 sticks!")
-        case 2:
-            print("No, you cannot take less than 1 sticks!")
-        case 3:
-            print("There are no enough sticks to take.")
-=======
 # Declear global variables
 max_sticks = 0
 pile = 0
@@ -65,7 +50,6 @@ def warning_message(index: int, *arg):
         case 5: print("I, smart computer, takes the last stick.")
         case 6: print(f"There are {arg[0]} sticks in the pile [{arg[0] * '|'}]\n")
 
->>>>>>> Stashed changes
 
 # Define this function to check error in input from human.
 def check_human_input(num:int)->int:
@@ -74,24 +58,6 @@ def check_human_input(num:int)->int:
         num = int(float(input(f"{name}, how many sticks you will take (max {max_sticks}):")))
     return num
 
-<<<<<<< Updated upstream
-# Define a function that has two integer parameters and returns an integer
-def sticks_in_pile(sticks: int, comp_play: bool):
-    # Human Action
-    taken_sticks = int(input(f"{name}, how many sticks you will take (1 or 2):"))
-    if check_sticks(taken_sticks) and taken_sticks <= sticks:
-        sticks -= taken_sticks
-        comp_play = True  # Computer is allowed to play after the human plays first.
-        if left_sticks(sticks):  # If there are sticks left do this condition else END the program.
-            print(f"There are {sticks} sticks in the pile")
-        else:
-            print(f"{name}, takes the last stick.")
-            return False
-    elif taken_sticks > 2:
-        warning_message(1)  # Take out more than 2 sticks.
-    elif taken_sticks < 1:
-        warning_message(2)  # Take out less than 1 stick.
-=======
 
 # Define a action function of human
 def human_action(h_sticks:int)->int:
@@ -108,7 +74,6 @@ def human_action(h_sticks:int)->int:
             global win
             win = False                         # If haman takes last stick then computer wins.
             return 0                            # Return 0 stick to end program.
->>>>>>> Stashed changes
     else:
         return 0
     
@@ -116,16 +81,6 @@ def human_action(h_sticks:int)->int:
 # Define action of the computer function 
 def computer_action(c_sticks:int)->int:
     # Computer Action
-<<<<<<< Updated upstream
-    if left_sticks(sticks) and comp_play:
-        tmp = rd.randint(1, 2)  # Random the number of sticks.
-        comp_take_sticks = min(tmp, sticks)  # Do not take more than sticks have.
-        print(f"\nI, smart computer, takes:{comp_take_sticks}")
-        sticks -= comp_take_sticks
-        comp_play = not comp_play  # After playing the game, computer has to wait untill human play again.
-        if left_sticks(sticks):  # If there are sticks left do this condition else END the program.
-            print(f"There are {sticks} sticks in the pile\n")
-=======
     if left_sticks(c_sticks):                   # If there are sticks left do the rest commands. 
         comp_take_sticks = AI(c_sticks)         # Calls function AI to make itself more intelligent
         print(f"\nI, smart computer, takes : {comp_take_sticks}")
@@ -133,7 +88,6 @@ def computer_action(c_sticks:int)->int:
         if left_sticks(c_sticks):               # If there are sticks left do this condition else END the program.
             warning_message(6, c_sticks)
             return c_sticks
->>>>>>> Stashed changes
         else:
             warning_message(5)
             global win
@@ -142,22 +96,6 @@ def computer_action(c_sticks:int)->int:
     else:
         return 0
 
-<<<<<<< Updated upstream
-    return sticks_in_pile(sticks, comp_play)
-
-
-pile = int(input("How many sticks (N) in the pile : "))
-print(f"There are {pile} sticks in the pile.")
-name = input("What is your name : ")
-
-winner = sticks_in_pile(pile, False)  # Who's gonna win this game??
-
-# Announce the winner
-if winner:
-    print(f"\n{name} win  ( I, smart computer,  am sad T_T)")
-else:
-    print("\nI, smart computer, win  !!!!")
-=======
 
 # Define a function that has an integer parameters and returns nothing. Computer play first.
 def SiP_game_com_first(sticks: int):    # This is recursive function and calls other functions.
@@ -193,4 +131,3 @@ if __name__ == "__main__":
         print(f"\n{name} win (I, smart computer, am sad T_T)")
     else:
         print("\nI, smart computer, win  !!!!")
->>>>>>> Stashed changes
